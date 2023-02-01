@@ -12,13 +12,12 @@ class App extends React.Component {
       bad: 0
   }
 
-  onFeedbackBtnClick = (e) => {
-    const buttonName = e.currentTarget.textContent.toLowerCase();
-    console.dir(e.currentTarget);
+  onFeedbackBtnClick = (option) => {
       this.setState(prevState => ({
-          [buttonName]: prevState[buttonName] + 1,
+          [option]: prevState[option] + 1,
       })
-  )}
+  )
+}
 
   countTotalFeedback = () => {
       let total = this.state.good + this.state.neutral + this.state.bad;
@@ -42,7 +41,7 @@ class App extends React.Component {
           }}>
               <Section title="Please leave feedback">
                 <FeedbackOptions
-                  options={['good', 'neutral', 'bad']}
+                  options={Object.keys(this.state)}
                   onLeaveFeedback={this.onFeedbackBtnClick} 
                 >
                 </FeedbackOptions>
